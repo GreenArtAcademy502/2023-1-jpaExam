@@ -1,11 +1,10 @@
-package com.green.jpaexam.product.model;
+package com.green.jpaexam.entity;
 
+import com.green.jpaexam.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
 
 @Data
 @Table(name = "t_product")
@@ -13,8 +12,8 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ProductEntity {
+@SuperBuilder
+public class ProductEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +28,9 @@ public class ProductEntity {
     @Column(nullable = false)
     private Integer stock;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "provider_id")
+    @ToString.Exclude
+    private ProviderEntity providerEntity;
 
 }

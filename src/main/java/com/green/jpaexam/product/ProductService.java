@@ -1,15 +1,16 @@
 package com.green.jpaexam.product;
 
 import com.green.jpaexam.product.model.ProductDto;
-import com.green.jpaexam.product.model.ProductEntity;
+import com.green.jpaexam.entity.ProductEntity;
 import com.green.jpaexam.product.model.ProductRes;
 import com.green.jpaexam.product.model.ProductUpdDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -24,8 +25,8 @@ public class ProductService {
         return dao.saveProduct(entity);
     }
 
-    public List<ProductRes> getProductAll() {
-        return dao.getProductAll();
+    public Page<ProductRes> getProductAll(Pageable page) {
+        return dao.getProductAll(page);
     }
 
     public ProductRes getProduct(Long number) {
