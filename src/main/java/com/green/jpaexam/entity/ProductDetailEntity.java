@@ -20,7 +20,7 @@ public class ProductDetailEntity extends BaseEntity {
     @OneToOne
     @MapsId
     @JoinColumn(name = "product_number", columnDefinition = "BIGINT UNSIGNED")
-    private ProductEntity ProductEntity;
+    private ProductEntity productEntity;
 
     private String description;
 }

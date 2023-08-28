@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+
 
 @Data
 @Table(name = "t_product")
@@ -34,8 +36,8 @@ public class ProductEntity extends BaseEntity {
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private ProviderEntity providerEntity;
-/*
+
     @OneToOne(mappedBy = "productEntity")
     private ProductDetailEntity productDetailEntity;
-*/
+
 }
