@@ -17,13 +17,13 @@ import java.util.List;
 public class ProviderEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT UNSIGNED")
     private Long id;
 
     private String name;
 
-    /*
-    @OneToMany
+    @OneToMany(mappedBy = "providerEntity")
     @ToString.Exclude
     private List<ProductEntity> productEntityList;
-     */
+
 }

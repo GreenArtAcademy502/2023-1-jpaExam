@@ -8,15 +8,17 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @Table(name = "t_product")
-@EqualsAndHashCode
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class ProductEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT UNSIGNED")
     private Long number;
 
     @Column(nullable = false)
@@ -32,5 +34,8 @@ public class ProductEntity extends BaseEntity {
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private ProviderEntity providerEntity;
-
+/*
+    @OneToOne(mappedBy = "productEntity")
+    private ProductDetailEntity productDetailEntity;
+*/
 }
