@@ -1,30 +1,30 @@
 package com.green.jpaexam.entity;
 
-import com.green.jpaexam.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@Entity
-@Table(name = "t_provider")
-@SuperBuilder
-@NoArgsConstructor
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class ProviderEntity extends BaseEntity {
+@Table(name = "t_category")
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false, columnDefinition = "BIGINT UNSIGNED")
     private Long id;
 
+    @Column(unique = true)
+    private String code;
+
     private String name;
 
-    @OneToMany(mappedBy = "providerEntity")
-    @ToString.Exclude
+    @OneToMany(mappedBy = "cateogryEntity")
     private List<ProductEntity> productEntityList;
-
-
 }

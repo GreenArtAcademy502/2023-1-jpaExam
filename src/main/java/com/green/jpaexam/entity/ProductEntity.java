@@ -20,7 +20,7 @@ public class ProductEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "BIGINT UNSIGNED")
+    @Column(updatable = false, nullable = false, columnDefinition = "BIGINT UNSIGNED")
     private Long number;
 
     @Column(nullable = false)
@@ -40,4 +40,8 @@ public class ProductEntity extends BaseEntity {
     @OneToOne(mappedBy = "productEntity")
     private ProductDetailEntity productDetailEntity;
 
+    @ManyToOne
+    @JoinColumn(name= "category_id")
+    @ToString.Exclude
+    private CategoryEntity cateogryEntity;
 }
