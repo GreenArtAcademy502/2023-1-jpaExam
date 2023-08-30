@@ -22,7 +22,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductRes> postProduct(@RequestBody ProductDto dto) {
-        ProductRes res = service.saveProduct(dto);
+        ProductRes res = service.saveProduct1(dto);
         return ResponseEntity.ok(res);
     }
 

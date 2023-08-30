@@ -37,11 +37,19 @@ public class ProductEntity extends BaseEntity {
     @ToString.Exclude
     private ProviderEntity providerEntity;
 
-    @OneToOne(mappedBy = "productEntity")
+    @OneToOne(mappedBy = "productEntity", cascade = { CascadeType.PERSIST })
     private ProductDetailEntity productDetailEntity;
 
     @ManyToOne
     @JoinColumn(name= "category_id")
     @ToString.Exclude
     private CategoryEntity cateogryEntity;
+
+    public void setProductDetailEntity(ProductDetailEntity productDetailEntity) {
+        if(this.productDetailEntity != null) {
+            this.productDetailEntity.setProductEntity(null);
+        }
+        this.productDetailEntity = productDetailEntity;
+        this.productDetailEntity.setProductEntity(this);
+    }
 }

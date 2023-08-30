@@ -25,6 +25,10 @@ public class ProductDaoImpl implements ProductDao {
                 .name(result.getName())
                 .price(result.getPrice())
                 .stock(result.getStock())
+                .description(result.getProductDetailEntity().getDescription())
+                .categoryNm(result.getCateogryEntity().getName())
+                .providerNm(result.getProviderEntity().getName())
+                .createdAt(result.getCreatedAtDatetime())
                 .build();
     }
 

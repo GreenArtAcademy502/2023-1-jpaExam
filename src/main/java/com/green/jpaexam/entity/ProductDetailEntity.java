@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "t_product_detail")
 @SuperBuilder
@@ -13,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class ProductDetailEntity extends BaseEntity {
+public class ProductDetailEntity extends BaseEntity implements Serializable {
     @Id
     private Long number;
 
