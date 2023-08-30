@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductDao dao;
+    private final ProductRepository rep;
 
     public ProductRes saveProduct(ProductDto dto) {
         ProductEntity entity = ProductEntity.builder()

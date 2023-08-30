@@ -5,27 +5,25 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Table(name = "t_provider")
+@Table(name = "t_producer_product")
 @SuperBuilder
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class ProviderEntity extends BaseEntity {
+public class ProducerProductEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false, columnDefinition = "BIGINT UNSIGNED")
     private Long id;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "i_producer")
+    private ProducerEntity producerEntity;
 
-    @OneToMany(mappedBy = "providerEntity", cascade = CascadeType.PERSIST)
-    @ToString.Exclude
-    private List<ProductEntity> productEntityList = new ArrayList();
-
-
+    @ManyToOne
+    @JoinColumn(name = "i_product")
+    private ProductEntity productEntity;
 }
