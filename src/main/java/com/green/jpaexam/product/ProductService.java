@@ -25,6 +25,29 @@ public class ProductService {
     private final CategoryRepository categoryRep;
     private final ProviderRepository providerRep;
 
+    public ProductRes saveProduct2(ProductDto dto) {
+        CategoryEntity categoryEntity = categoryRep.findById(dto.getCategoryId()).get();
+        ProviderEntity providerEntity = providerRep.findById(dto.getProviderId()).get();
+
+        ProductDetailEntity productDetailEntity = ProductDetailEntity.builder()
+                .description(dto.getDescription())
+                .build();
+
+        ProductEntity productEntity = ProductEntity.builder()
+                .name(dto.getName())
+                .price(dto.getPrice())
+                .stock(dto.getStock())
+                .cateogryEntity(categoryEntity)
+                .providerEntity(providerEntity)
+                .build();
+
+        productEntity.setProductDetailEntity(productDetailEntity);
+        productDetailEntity.setProductEntity(productEntity);
+
+        productRep.save(productEntity);
+        return null;
+    }
+
     public ProductRes saveProduct1(ProductDto dto) {
         CategoryEntity categoryEntity = categoryRep.findById(dto.getCategoryId()).get();
         ProviderEntity providerEntity = providerRep.findById(dto.getProviderId()).get();
