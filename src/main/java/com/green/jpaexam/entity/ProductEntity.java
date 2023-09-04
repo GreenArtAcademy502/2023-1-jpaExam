@@ -5,9 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.io.Serializable;
-
-
 @Data
 @Table(name = "t_product")
 @Entity
@@ -38,6 +35,7 @@ public class ProductEntity extends BaseEntity {
     private ProviderEntity providerEntity;
 
     @OneToOne(mappedBy = "productEntity", cascade = { CascadeType.PERSIST })
+    @ToString.Exclude
     private ProductDetailEntity productDetailEntity;
 
     @ManyToOne

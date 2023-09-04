@@ -32,6 +32,11 @@ public class ProductController {
         return ResponseEntity.ok(service.getProductAll(page));
     }
 
+    @GetMapping("/jpql")
+    public ResponseEntity<List<ProductRes>> getProductAllJpql() {
+        return ResponseEntity.ok(service.getProductAllJpql());
+    }
+
     @GetMapping("/{number}")
     public ResponseEntity<ProductRes> getProduct(@PathVariable Long number) {
         return ResponseEntity.ok(service.getProduct(number));

@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -42,7 +44,7 @@ public class ProductService {
                 .build();
 
         productEntity.setProductDetailEntity(productDetailEntity);
-        productDetailEntity.setProductEntity(productEntity);
+        //productDetailEntity.setProductEntity(productEntity);
 
         productRep.save(productEntity);
         return null;
@@ -105,6 +107,14 @@ public class ProductService {
     public Page<ProductRes> getProductAll(Pageable page) {
         return dao.getProductAll(page);
     }
+
+    public List<ProductRes> getProductAllJpql() {
+        List<ProductEntity> list = productRep.selProductAll();
+        log.info("list : {}", list);
+        return null;
+    }
+
+
 
     public ProductRes getProduct(Long number) {
        return dao.getProduct(number);
