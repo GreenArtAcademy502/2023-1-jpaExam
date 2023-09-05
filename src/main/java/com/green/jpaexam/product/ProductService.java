@@ -4,11 +4,8 @@ import com.green.jpaexam.category.CategoryRepository;
 import com.green.jpaexam.entity.CategoryEntity;
 import com.green.jpaexam.entity.ProductDetailEntity;
 import com.green.jpaexam.entity.ProviderEntity;
-import com.green.jpaexam.product.model.ProductDto;
+import com.green.jpaexam.product.model.*;
 import com.green.jpaexam.entity.ProductEntity;
-import com.green.jpaexam.product.model.ProductRes;
-import com.green.jpaexam.product.model.ProductSelAllParam;
-import com.green.jpaexam.product.model.ProductUpdDto;
 import com.green.jpaexam.provider.ProviderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +24,8 @@ public class ProductService {
     private final ProductDetailRepository productDetailRep;
     private final CategoryRepository categoryRep;
     private final ProviderRepository providerRep;
+    private final ProductQdsl productQdsl;
+
 
     public ProductRes saveProduct2(ProductDto dto) {
         CategoryEntity categoryEntity = categoryRep.findById(dto.getCategoryId()).get();
@@ -114,7 +113,9 @@ public class ProductService {
         return list;
     }
 
-
+    public List<ProductResQdsl> getProductAllQdsl() {
+        return productQdsl.selProductAll();
+    }
 
     public ProductRes getProduct(Long number) {
        return dao.getProduct(number);
