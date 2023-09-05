@@ -23,6 +23,7 @@ public class ProviderEntity extends BaseEntity {
 
     private String name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "providerEntity", cascade = CascadeType.PERSIST)
     @ToString.Exclude
     private List<ProductEntity> productEntityList = new ArrayList();

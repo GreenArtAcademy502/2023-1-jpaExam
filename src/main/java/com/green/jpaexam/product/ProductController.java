@@ -2,6 +2,7 @@ package com.green.jpaexam.product;
 
 import com.green.jpaexam.product.model.ProductDto;
 import com.green.jpaexam.product.model.ProductRes;
+import com.green.jpaexam.product.model.ProductSelAllParam;
 import com.green.jpaexam.product.model.ProductUpdDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -33,8 +34,10 @@ public class ProductController {
     }
 
     @GetMapping("/jpql")
-    public ResponseEntity<List<ProductRes>> getProductAllJpql() {
-        return ResponseEntity.ok(service.getProductAllJpql());
+    public ResponseEntity<List<ProductRes>> getProductAllJpql(
+            @PageableDefault(sort="number", direction = Sort.Direction.DESC, size=20) Pageable page
+            , ProductSelAllParam param) {
+        return ResponseEntity.ok(service.getProductAllJpql(page, param));
     }
 
     @GetMapping("/{number}")

@@ -7,6 +7,7 @@ import com.green.jpaexam.entity.ProviderEntity;
 import com.green.jpaexam.product.model.ProductDto;
 import com.green.jpaexam.entity.ProductEntity;
 import com.green.jpaexam.product.model.ProductRes;
+import com.green.jpaexam.product.model.ProductSelAllParam;
 import com.green.jpaexam.product.model.ProductUpdDto;
 import com.green.jpaexam.provider.ProviderRepository;
 import lombok.RequiredArgsConstructor;
@@ -79,7 +80,7 @@ public class ProductService {
                 .description(productDetailEntity.getDescription())
                 .categoryNm(productEntity.getCateogryEntity().getName())
                 .providerNm(productEntity.getProviderEntity().getName())
-                .createdAt(productEntity.getCreatedAtDatetime())
+                //.createdAt(productEntity.getCreatedAtDatetime())
                 .build();
     }
 
@@ -108,10 +109,9 @@ public class ProductService {
         return dao.getProductAll(page);
     }
 
-    public List<ProductRes> getProductAllJpql() {
-        List<ProductEntity> list = productRep.selProductAll();
-        log.info("list : {}", list);
-        return null;
+    public List<ProductRes> getProductAllJpql(Pageable pageable, ProductSelAllParam param) {
+        List<ProductRes> list = productRep.selProductAll(pageable, param);
+        return list;
     }
 
 

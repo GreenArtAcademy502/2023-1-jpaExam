@@ -28,7 +28,7 @@ public class ProductDaoImpl implements ProductDao {
                 .description(result.getProductDetailEntity().getDescription())
                 .categoryNm(result.getCateogryEntity().getName())
                 .providerNm(result.getProviderEntity().getName())
-                .createdAt(result.getCreatedAtDatetime())
+                //.createdAt(result.getCreatedAtDatetime())
                 .build();
     }
 

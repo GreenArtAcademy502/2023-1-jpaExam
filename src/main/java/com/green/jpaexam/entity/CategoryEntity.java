@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,6 +26,7 @@ public class CategoryEntity {
 
     private String name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "cateogryEntity")
-    private List<ProductEntity> productEntityList;
+    private List<ProductEntity> productEntityList = new ArrayList();
 }
