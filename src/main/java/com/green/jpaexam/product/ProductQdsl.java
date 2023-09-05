@@ -17,6 +17,7 @@ import org.springframework.data.querydsl.QuerydslUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import static com.green.jpaexam.entity.QProductDetailEntity.productDetailEntity;
 
@@ -49,7 +50,7 @@ public class ProductQdsl {
     }
 
     private OrderSpecifier[] getAllOrderSpecifiers(Pageable pageable) {
-        List<OrderSpecifier> orders = new ArrayList();
+        List<OrderSpecifier> orders = new LinkedList();
         if(!pageable.getSort().isEmpty()) {
             for(Sort.Order order : pageable.getSort()) {
                 Order direction = order.getDirection().isAscending() ? Order.ASC : Order.DESC;
@@ -58,6 +59,7 @@ public class ProductQdsl {
                     case "number": orders.add(new OrderSpecifier(direction, p.number)); break;
                     case "product_name": orders.add(new OrderSpecifier(direction, p.name)); break;
                     case "price": orders.add(new OrderSpecifier(direction, p.price)); break;
+                    case "category_name": orders.add(new OrderSpecifier(direction, c.name)); break;
                 }
             }
         }
