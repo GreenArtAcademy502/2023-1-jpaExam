@@ -2,6 +2,7 @@ package com.green.jpaexam.product;
 
 import com.green.jpaexam.product.model.*;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,8 +39,9 @@ public class ProductController {
     }
 
     @GetMapping("/qdsl")
-    public ResponseEntity<List<ProductResQdsl>> getProductAllQdsl() {
-        return ResponseEntity.ok(service.getProductAllQdsl());
+    public ResponseEntity<List<ProductResQdsl>> getProductAllQdsl(@ParameterObject @PageableDefault(page = 0, sort="number", direction = Sort.Direction.DESC, size=20)
+                                                                      Pageable pageable) {
+        return ResponseEntity.ok(service.getProductAllQdsl(pageable));
     }
 
     @GetMapping("/{number}")
