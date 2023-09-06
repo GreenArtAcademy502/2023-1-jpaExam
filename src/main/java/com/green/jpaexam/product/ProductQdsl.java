@@ -39,6 +39,9 @@ public class ProductQdsl {
             whereBuilder.and(p.name.contains(search))
                         .or(productDetailEntity.description.contains(search));
         }
+        whereBuilder.and(p.number.goe(JPAExpressions.select(p.number.count()).from(p)));
+
+
         JPQLQuery<ProductResQdsl> query = jpaQueryFactory
                 .select(Projections.bean(ProductResQdsl.class
                         , p.number, p.name, p.price, p.stock, productDetailEntity.description
