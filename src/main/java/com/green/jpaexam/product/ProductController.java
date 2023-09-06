@@ -2,6 +2,7 @@ package com.green.jpaexam.product;
 
 import com.green.jpaexam.product.model.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/product")
 @RequiredArgsConstructor
@@ -40,8 +42,10 @@ public class ProductController {
 
     @GetMapping("/qdsl")
     public ResponseEntity<List<ProductResQdsl>> getProductAllQdsl(@ParameterObject @PageableDefault(page = 0, sort="number", direction = Sort.Direction.DESC, size=20)
-                                                                      Pageable pageable) {
-        return ResponseEntity.ok(service.getProductAllQdsl(pageable));
+                                                                      Pageable pageable,
+                                                                  @RequestParam(required = false) String search) {
+        log.info("search : {}", search);
+        return ResponseEntity.ok(service.getProductAllQdsl(pageable, search));
     }
 
     @GetMapping("/{number}")

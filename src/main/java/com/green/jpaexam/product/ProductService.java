@@ -113,8 +113,8 @@ public class ProductService {
         return list;
     }
 
-    public List<ProductResQdsl> getProductAllQdsl(Pageable pageable) {
-        return productQdsl.selProductAll(pageable);
+    public List<ProductResQdsl> getProductAllQdsl(Pageable pageable, String search) {
+        return productQdsl.selProductAll(pageable, search);
     }
 
     public ProductRes getProduct(Long number) {

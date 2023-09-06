@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class ProductResQdsl {
-    private Long number;
+    private long number;
     private String name;
     private int price;
     private int stock;
@@ -14,4 +14,5 @@ public class ProductResQdsl {
     private String categoryNm;
     private String providerNm;
     private LocalDateTime createdAt;
+    private long totalCnt;
 }
